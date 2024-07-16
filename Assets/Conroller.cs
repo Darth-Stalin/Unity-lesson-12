@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Conroller : MonoBehaviour
 {
-
+   
     public GameObject GameOverScreen;
-    public 
+  
 
     // Start is called before the first frame update
     void Start()
@@ -21,14 +21,22 @@ public class Conroller : MonoBehaviour
         
     }
 
+   public IEnumerator timer()
+    {
+        yield return new WaitForSeconds(1);
+        GameOverScreen.SetActive(true);
+    }
     private void OnTriggerEnter(Collider other)
     {
 
         if(other.CompareTag("Finish"))
         {
-            GameOverScreen.SetActive(true);
+            StartCoroutine(timer());
+            
         }
     }
+
+    
 
     public void RestartGame ()
     {
